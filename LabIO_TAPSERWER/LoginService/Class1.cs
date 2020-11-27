@@ -37,17 +37,17 @@ namespace LoginService
         private static (string log, string pas) AskForLogin(NetworkStream stream)
         {
             byte[] buffer = new byte[_data_length];
-            message = "Podaj login: \r\n";
-            stream.Write(Encoding.ASCII.GetBytes(message), 0, message.Length);
+          //  message = "Podaj login: \r\n";
+           // stream.Write(Encoding.ASCII.GetBytes(message), 0, message.Length);
             do
             {
                 ReceivedDataLength = stream.Read(buffer, 0, _data_length);
             } while ((login = Encoding.ASCII.GetString(buffer, 0, ReceivedDataLength)) == "\r\n");
 
 
-            message = "Podaj haslo: \r\n";
+          //  message = "Podaj haslo: \r\n";
 
-            stream.Write(Encoding.ASCII.GetBytes(message), 0, message.Length);
+          //  stream.Write(Encoding.ASCII.GetBytes(message), 0, message.Length);
             do
             {
                 ReceivedDataLength = stream.Read(buffer, 0, _data_length);
@@ -111,25 +111,25 @@ namespace LoginService
             if (LoggingIn(login, haslo))
             {
 
-                message = "Udalo sie zalogowac, co chcesz zrobic?\r\n1.Nic\r\n2.Wylogujsie\r\n";
+                message = "1";
                 stream.Write(Encoding.ASCII.GetBytes(message), 0, message.Length);
                 do
                 {
                     ReceivedDataLength = stream.Read(buffer, 0, _data_length);
-                } while ((mes = Encoding.ASCII.GetString(buffer, 0, ReceivedDataLength)) == "\r\n" || (mes = Encoding.ASCII.GetString(buffer, 0, ReceivedDataLength)) == "1");
+                } while ((mes = Encoding.ASCII.GetString(buffer, 0, ReceivedDataLength)) == "\r\n" || (mes = Encoding.ASCII.GetString(buffer, 0, ReceivedDataLength)) == "0");
 
 
-                message = "Udalo sie wylogowac zegnam\r\n\r\n";
-                stream.Write(Encoding.ASCII.GetBytes(message), 0, message.Length);
-                message = "1. Zalguj sie\r\n2. Zarejestruj sie\r\n";
-                stream.Write(Encoding.ASCII.GetBytes(message), 0, message.Length);
+              //  message = "Udalo sie wylogowac zegnam\r\n\r\n";
+               // stream.Write(Encoding.ASCII.GetBytes(message), 0, message.Length);
+               // message = "1. Zalguj sie\r\n2. Zarejestruj sie\r\n";
+               // stream.Write(Encoding.ASCII.GetBytes(message), 0, message.Length);
             }
             else
             {
-                message = "Nie udalo sie zalogowac :(\r\n\r\n";
+                message = "0";
                 stream.Write(Encoding.ASCII.GetBytes(message), 0, message.Length);
-                message = "1. Zalguj sie\r\n2. Zarejestruj sie\r\n";
-                stream.Write(Encoding.ASCII.GetBytes(message), 0, message.Length);
+                //message = "1. Zalguj sie\r\n2. Zarejestruj sie\r\n";
+               // stream.Write(Encoding.ASCII.GetBytes(message), 0, message.Length);
             }
 
         }
@@ -150,18 +150,18 @@ namespace LoginService
                 password = Cipher.Encrpyt(password);
                 streamWriter.WriteLine($"{login},{password}");
                 streamWriter.Close();
-                message = "Udalo sie zarejestrowac \r\n";
+                message = "1";
                 stream.Write(Encoding.ASCII.GetBytes(message), 0, message.Length);
-                message = "1. Zalguj sie\r\n2. Zarejestruj sie\r\n";
-                stream.Write(Encoding.ASCII.GetBytes(message), 0, message.Length);
+              //  message = "1. Zalguj sie\r\n2. Zarejestruj sie\r\n";
+               // stream.Write(Encoding.ASCII.GetBytes(message), 0, message.Length);
             }
             else
             {
 
-                message = "Uzytkownik juz istnieje / wybierz inna nazwe \r\n";
+                message = "0";
                 stream.Write(Encoding.ASCII.GetBytes(message), 0, message.Length);
-                message = "1. Zalguj sie\r\n2. Zarejestruj sie\r\n";
-                stream.Write(Encoding.ASCII.GetBytes(message), 0, message.Length);
+                //message = "1. Zalguj sie\r\n2. Zarejestruj sie\r\n";
+               // stream.Write(Encoding.ASCII.GetBytes(message), 0, message.Length);
             }
         }
 
