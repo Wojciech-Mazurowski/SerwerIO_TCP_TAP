@@ -7,7 +7,7 @@ namespace ServerTCPLib
 {
     public abstract class ServerTCP
     {
-        public delegate void TransmissionDataDelegate(NetworkStream stream);
+       
 
         protected TcpListener _tcpListener;
         protected NetworkStream _stream;
@@ -32,15 +32,6 @@ namespace ServerTCPLib
         /// Funckja pozwalajaca łączyć się klientom 
         /// </summary>
         public abstract void AcceptClient();
-        /// <summary>
-        /// Funkcja zamykajaca polączenie z użytkownikiem
-        /// </summary>
-        /// <param name="ar"></param>
-        protected void TransmissionCallback(IAsyncResult ar)
-        {
-            TcpClient client = (TcpClient)ar.AsyncState;
-            client.Close();
-        }
         /// <summary>
         /// Funkcja odpowiadajaca za pierwszą wymiane danych z użytkownikiem, pytająca czy użytkownik chce sie zalogowac czy zarejestrowac
         /// </summary>
