@@ -3,7 +3,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 
-namespace LibServerTCP
+namespace ServerTCPLib
 {
     public abstract class ServerTCP
     {
@@ -53,7 +53,7 @@ namespace LibServerTCP
             _tcpListener.Start();
 
         }
+     
         public abstract void Start();
-
     }
 }

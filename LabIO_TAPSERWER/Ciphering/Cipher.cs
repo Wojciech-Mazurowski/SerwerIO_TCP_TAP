@@ -7,7 +7,6 @@ namespace Ciphering
 {
     public static class Cipher
     {
-
         private static readonly string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ_. ";
         private static readonly int alphabetLength = alphabet.Length;
         private static string key = "ugabuga";
@@ -83,7 +82,6 @@ namespace Ciphering
 
             return outputText.ToString();
         }
-
 
     }
 }
