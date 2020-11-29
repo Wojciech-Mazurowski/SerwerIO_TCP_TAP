@@ -12,7 +12,7 @@ namespace LoginService
         private static string login, pass;
         private static string FileName = "logins.txt";
         private static int ReceivedDataLength;
-        private static int _data_length = 1024;
+        private static int data_length = 1024;
         /// <summary>
         /// Funkcja sprawdzajaca istnienie pliku, oraz tworzaca go w razie jego braku
         /// </summary>
@@ -36,12 +36,12 @@ namespace LoginService
         /// <returns>string:(login,haslo)</returns>
         private static (string log, string pas) AskForLogin(NetworkStream stream)
         {
-            byte[] buffer = new byte[_data_length];
+            byte[] buffer = new byte[data_length];
             //  message = "Podaj login: \r\n";
             // stream.Write(Encoding.ASCII.GetBytes(message), 0, message.Length);
             do
             {
-                ReceivedDataLength = stream.Read(buffer, 0, _data_length);
+                ReceivedDataLength = stream.Read(buffer, 0, data_length);
             } while ((login = Encoding.ASCII.GetString(buffer, 0, ReceivedDataLength)) == "\r\n");
 
 
@@ -50,7 +50,7 @@ namespace LoginService
             //  stream.Write(Encoding.ASCII.GetBytes(message), 0, message.Length);
             do
             {
-                ReceivedDataLength = stream.Read(buffer, 0, _data_length);
+                ReceivedDataLength = stream.Read(buffer, 0, data_length);
             } while ((pass = Encoding.ASCII.GetString(buffer, 0, ReceivedDataLength)) == "\r\n");
 
             return (login, pass);
@@ -103,7 +103,7 @@ namespace LoginService
         /// <param name="stream">strumien klienta</param>
         public static void LoginHandle(NetworkStream stream)
         {
-            byte[] buffer = new byte[_data_length];
+            byte[] buffer = new byte[data_length];
             string login, haslo;
             string mes;
             int wybor = 1;
@@ -115,7 +115,7 @@ namespace LoginService
                 stream.Write(Encoding.ASCII.GetBytes(message), 0, message.Length);
                 do
                 {
-                    ReceivedDataLength = stream.Read(buffer, 0, _data_length);
+                    ReceivedDataLength = stream.Read(buffer, 0, data_length);
                 } while ((mes = Encoding.ASCII.GetString(buffer, 0, ReceivedDataLength)) == "\r\n" || (mes = Encoding.ASCII.GetString(buffer, 0, ReceivedDataLength)) == "0");
 
 
@@ -140,7 +140,7 @@ namespace LoginService
         /// <param name="stream">strumien klienta</param>
         public static void RegisterHandle(NetworkStream stream)
         {
-            byte[] buffer = new byte[_data_length];
+            byte[] buffer = new byte[data_length];
             string login, password;
             (login, password) = AskForLogin(stream);
             if (!DoesUserExists(Cipher.Encrpyt(login)))

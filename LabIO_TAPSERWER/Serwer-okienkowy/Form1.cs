@@ -14,15 +14,18 @@ namespace Serwer_okienkowy
 {
     public partial class Form1 : Form
     {
+       
+
 
         public Form1()
         {
             InitializeComponent();
             label3.Text = DateTime.Now.ToShortDateString();
         }
-        ServerTCPAsync_TAP server;
+       
         private async void startButton(object sender, EventArgs e)
         {
+            ServerTCPAsync_TAP server;
             this.button1.Enabled = false;
             server = new ServerTCPAsync_TAP(IPAddress.Parse(textBox1.Text), Convert.ToInt32(textBox2.Text));
             var someTask = Task.Run(() => server.Start());
