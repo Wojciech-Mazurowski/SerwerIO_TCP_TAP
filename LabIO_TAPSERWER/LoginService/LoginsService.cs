@@ -70,9 +70,11 @@ namespace LoginService
                 temp = temp.Substring(0, temp.IndexOf(','));
                 if (login == temp)
                 {
+                    streamReader.Close();
                     return true;
                 }
             }
+            streamReader.Close();
             return false;
         }
 
@@ -92,9 +94,11 @@ namespace LoginService
                 string[] credentials = temp.Split(',');
                 if (login == Cipher.Decrypt(credentials[0]) && password == Cipher.Decrypt(credentials[1]))
                 {
+                    streamReader.Close();
                     return true;
                 }
             }
+            streamReader.Close();
             return false;
         }
         /// <summary>

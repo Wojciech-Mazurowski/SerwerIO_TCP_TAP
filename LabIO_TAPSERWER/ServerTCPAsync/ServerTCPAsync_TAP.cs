@@ -40,9 +40,9 @@ namespace ServerTCPAsync
             buffer = new byte[_data_length];
 
             string anwser;
-             string message = "1. Zalguj sie\r\n2. Zarejestruj sie\r\n";
-              message = "1. Zalguj sie\r\n2. Zarejestruj sie\r\n";
-                stream.Write(Encoding.ASCII.GetBytes(message), 0, message.Length);
+           //  string message = "1. Zalguj sie\r\n2. Zarejestruj sie\r\n";
+           //   message = "1. Zalguj sie\r\n2. Zarejestruj sie\r\n";
+           //    stream.Write(Encoding.ASCII.GetBytes(message), 0, message.Length);
             while (true)
             {
 
