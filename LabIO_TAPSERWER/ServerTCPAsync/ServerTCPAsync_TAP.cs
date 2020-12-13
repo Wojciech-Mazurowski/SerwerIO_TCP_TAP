@@ -5,7 +5,8 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Collections.Generic;
+using ChatCommunication;
 
 namespace ServerTCPAsync 
 {
@@ -16,6 +17,8 @@ namespace ServerTCPAsync
             _ip = ip;
             _port = port;
             LoginsService.CheckFile();
+            Communication.lista_zalogowanych = new Dictionary<string, NetworkStream>();
+            
         }
 
         public override void AcceptClient()

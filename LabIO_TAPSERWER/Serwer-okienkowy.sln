@@ -9,9 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ciphering", "Ciphering\Ciph
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoginService", "LoginService\LoginService.csproj", "{7DB4495C-9581-453B-9320-B2B87F54FE76}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerTCP", "ServerTCP\ServerTCP.csproj", "{85A39E34-255B-432B-A9F6-8A3FA6DCC46E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServerTCP", "ServerTCP\ServerTCP.csproj", "{85A39E34-255B-432B-A9F6-8A3FA6DCC46E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerTCPAsync", "ServerTCPAsync\ServerTCPAsync.csproj", "{61BA3C7C-586E-4C73-B810-44CEB94ABF76}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServerTCPAsync", "ServerTCPAsync\ServerTCPAsync.csproj", "{61BA3C7C-586E-4C73-B810-44CEB94ABF76}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatCommunication", "ChatCommunication\ChatCommunication.csproj", "{1D45DAEE-3F1A-4E98-9977-F0FF381B70BF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{61BA3C7C-586E-4C73-B810-44CEB94ABF76}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{61BA3C7C-586E-4C73-B810-44CEB94ABF76}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{61BA3C7C-586E-4C73-B810-44CEB94ABF76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D45DAEE-3F1A-4E98-9977-F0FF381B70BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D45DAEE-3F1A-4E98-9977-F0FF381B70BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D45DAEE-3F1A-4E98-9977-F0FF381B70BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D45DAEE-3F1A-4E98-9977-F0FF381B70BF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ChatCommunication\ChatCommunication.csproj" />
     <ProjectReference Include="..\LoginService\LoginService.csproj" />
     <ProjectReference Include="..\ServerTCP\ServerTCP.csproj" />
   </ItemGroup>

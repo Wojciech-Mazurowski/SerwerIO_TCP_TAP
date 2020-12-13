@@ -1,9 +1,11 @@
-﻿using Ciphering;
+﻿using ChatCommunication;
+using Ciphering;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net.Sockets;
 using System.Text;
-
+using System.Threading;
 namespace LoginService
 {
     public static class LoginsService
@@ -13,6 +15,7 @@ namespace LoginService
         private static string FileName = "logins.txt";
         private static int ReceivedDataLength;
         private static int data_length = 1024;
+        
         /// <summary>
         /// Funkcja sprawdzajaca istnienie pliku, oraz tworzaca go w razie jego braku
         /// </summary>
@@ -112,28 +115,37 @@ namespace LoginService
             string mes;
             int wybor = 1;
             (login, haslo) = AskForLogin(stream);
-            if (LoggingIn(login, haslo))
+            if (LoggingIn(login, haslo) && !Communication.lista_zalogowanych.ContainsKey(login))
             {
-
+                Communication.lista_zalogowanych.Add(login,stream);
                 message = "1";
                 stream.Write(Encoding.ASCII.GetBytes(message), 0, message.Length);
-                do
-                {
-                    ReceivedDataLength = stream.Read(buffer, 0, data_length);
-                } while ((mes = Encoding.ASCII.GetString(buffer, 0, ReceivedDataLength)) == "\r\n" || (mes = Encoding.ASCII.GetString(buffer, 0, ReceivedDataLength)) == "0");
+                Thread.Sleep(100);
+                message = string.Join(",", Communication.lista_zalogowanych.Keys);
+                stream.Write(Encoding.ASCII.GetBytes(message), 0, message.Length);
 
+                Communication.Chat_loop(stream,login);
 
-                //  message = "Udalo sie wylogowac zegnam\r\n\r\n";
+                message = "udalosiealepocichu";
+                stream.Write(Encoding.ASCII.GetBytes(message), 0, message.Length);
+                Communication.lista_zalogowanych.Remove(login);  
+
+                // message = "Udalo sie wylogowac zegnam\r\n\r\n";
                 // stream.Write(Encoding.ASCII.GetBytes(message), 0, message.Length);
                 // message = "1. Zalguj sie\r\n2. Zarejestruj sie\r\n";
                 // stream.Write(Encoding.ASCII.GetBytes(message), 0, message.Length);
             }
-            else
+            else if(Communication.lista_zalogowanych.ContainsKey(login))
             {
-                message = "0";
+                message = "2";        
                 stream.Write(Encoding.ASCII.GetBytes(message), 0, message.Length);
                 //message = "1. Zalguj sie\r\n2. Zarejestruj sie\r\n";
                 // stream.Write(Encoding.ASCII.GetBytes(message), 0, message.Length);
+            }
+            else
+            {
+                message = "0";         
+                stream.Write(Encoding.ASCII.GetBytes(message), 0, message.Length);
             }
 
         }
