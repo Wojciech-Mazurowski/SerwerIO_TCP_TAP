@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
+using PasswordService;
 
 namespace ChatCommunication
 {
@@ -36,6 +37,27 @@ namespace ChatCommunication
                     Thread.Sleep(100);
                     message = string.Join(",", Communication.lista_zalogowanych.Keys);
                     stream.Write(Encoding.ASCII.GetBytes(message), 0, message.Length);
+                }
+                else if (mes == "%change%")
+                {
+                    do
+                    {
+                        ReceivedDataLength = stream.Read(buffer, 0, data_length);
+                        mes = Encoding.ASCII.GetString(buffer, 0, ReceivedDataLength);
+                    } while ((mes = Encoding.ASCII.GetString(buffer, 0, ReceivedDataLength)) == "\r\n");
+
+                    if (PasswordS.ChangePassword(login,mes))
+                    {
+
+                        message = "1";
+                        stream.Write(Encoding.ASCII.GetBytes(message), 0, message.Length);
+                    }
+                    else
+                    {
+                        message = "0";
+                        stream.Write(Encoding.ASCII.GetBytes(message), 0, message.Length);
+                    }
+
                 }
                 else
                 {
